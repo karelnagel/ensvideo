@@ -6,12 +6,35 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "remotion:start": "npx remotion preview remotion/index.ts",
+    "remotion:build": "npx remotion render remotion/index.ts Video out.mp4",
+    "generate": "graphql-codegen"
   },
   "dependencies": {
+    "@apollo/client": "^3.6.8",
+    "@ensdomains/ui": "^3.4.1",
+    "@graphql-codegen/cli": "^2.6.2",
+    "@graphql-codegen/typescript": "^2.4.8",
+    "@graphql-codegen/typescript-operations": "^2.3.5",
+    "@graphql-codegen/typescript-react-apollo": "^3.2.11",
+    "@rainbow-me/rainbowkit": "^0.3.3",
+    "@remotion/cli": "^3.0.20",
+    "@remotion/player": "^3.0.20",
+    "autoprefixer": "^10.4.7",
+    "daisyui": "^2.17.0",
+    "ethers": "^5.6.9",
+    "graphql": "^16.5.0",
     "next": "12.1.6",
+    "postcss": "^8.4.14",
     "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "react-dom": "18.2.0",
+    "react-icons": "^4.4.0",
+    "remotion": "^3.0.20",
+    "tailwindcss": "^3.1.4",
+    "theme-change": "^2.0.2",
+    "typescript": "^4.4.2",
+    "wagmi": "^0.4.12"
   },
   "devDependencies": {
     "@types/node": "18.0.0",

@@ -1,0 +1,20 @@
+query ens($name: String = "") {
+  domains(where: { name: $name }) {
+    id
+    name
+    resolver {
+      texts
+      contentHash
+    }
+    owner {
+      id
+    }
+    createdAt
+    subdomains {
+      name
+    }
+    resolvedAddress{
+      id
+    }
+  }
+}
