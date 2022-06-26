@@ -3,17 +3,15 @@ import type { AppProps } from "next/app";
 import { useEffect, useState } from "react";
 import { Header } from "../components/Header";
 import { Footer } from "../components/Footer";
-
 import React from "react";
-import ReactDOM from "react-dom/client";
 import "@rainbow-me/rainbowkit/styles.css";
-
 import { getDefaultWallets, RainbowKitProvider } from "@rainbow-me/rainbowkit";
-import { chain, configureChains, createClient, WagmiConfig } from "wagmi";
+import { configureChains, createClient, WagmiConfig } from "wagmi";
 import { alchemyProvider } from "wagmi/providers/alchemy";
 import { publicProvider } from "wagmi/providers/public";
 import { ApolloClient, ApolloProvider, HttpLink, InMemoryCache } from "@apollo/client";
 import { config, network } from "./../config";
+import { CustomHead } from "../components/Head";
 
 const { chains, provider } = configureChains(
   [network.chain],
@@ -48,6 +46,7 @@ function MyApp({ Component, pageProps }: AppProps) {
     <ApolloProvider client={client}>
       <WagmiConfig client={wagmiClient}>
         <RainbowKitProvider chains={chains}>
+          <CustomHead />
           <div className="font-workSans min-h-screen bg-base-200 flex flex-col" data-theme={dark ? "night" : "cmyk"}>
             <Header theme={dark} setTheme={setDark} />
             <Component {...pageProps} />

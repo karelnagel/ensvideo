@@ -1,25 +1,32 @@
 import { ConnectButton } from "@rainbow-me/rainbowkit";
-import { useAccount, useEnsName, useProvider, useSigner } from "wagmi";
+import { useAccount, useEnsName, useEnsResolver, useProvider, useSigner } from "wagmi";
 import { useState } from "react";
 import { Player } from "../components/Player";
-import { config } from "../config";
+import { config, network } from "../config";
 import { availableScenes, defaultScenes, Scene, SceneNames } from "../interfaces/VideoInput";
 import { AiFillCloseCircle } from "react-icons/ai";
-import { getUrl, setText } from "../functions/url";
+import { getUrl, useSetText } from "../functions/url";
 import Link from "next/link";
+import { uploadJson } from "../functions/ipfs";
 
 function Home() {
   const { data: account } = useAccount();
-  const { data: name } = useEnsName({ address: account?.address });
+  // const name = "karel2.eth";
+  const idk = useEnsResolver()
+  const { data: name } = useEnsName({ address: account?.address, chainId: network.chain.id });
   const [theme, setTheme] = useState(config.themes[0]);
   const [scenes, setScenes] = useState<Scene[]>(defaultScenes);
   const signer = useSigner();
-
+  const setText = useSetText();
+  console.log(name);
   const saveToChain = async () => {
-    console.log("sdfsdfsdfsdfasdf")
+    console.log("sdfsdfsdfsdfasdf");
     if (!name) return;
-    const ipfsHash = "ipfshash";
-    await setText(name, ipfsHash, signer);
+    const hash = await uploadJson({ theme, scenes });
+    if (!hash) return;
+    console.log(hash);
+    await setText(name, hash);
+    console.log("success");
   };
   return (
     <div className="min-h-full">

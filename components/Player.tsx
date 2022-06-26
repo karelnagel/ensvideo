@@ -11,6 +11,7 @@ export function Player({ name,  theme, scenes }: { name: string; theme: string; 
   const provider = useProvider({ chainId: network.chain.id });
   const [videoProps, setVideoProps] = useState<VideoInput>({ name, theme, scenes });
   const duration = scenes.reduce((acc, scene) => acc + scene.duration, 0);
+
   useEffect(() => {
     const effect = async () => {
       const resolver = await provider.getResolver(name);
