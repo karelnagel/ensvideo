@@ -15,4 +15,5 @@ export const setText = async (name: string, value: string, customProvider: any) 
     const tx = await ens.setText(name, key, value)
     console.log(tx.hash)
     await tx.wait()
+    
 }
