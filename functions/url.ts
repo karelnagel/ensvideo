@@ -1,13 +1,14 @@
 
 import { config } from "../config";
-import { Scene } from "../interfaces/VideoInput";
+import { Music, Scene } from "../interfaces/VideoInput";
 import { namehash } from '@ensdomains/ui'
 import { useProvider, useSigner } from "wagmi";
 import { Contract } from "ethers";
 
-export const getUrl = ({ baseUrl, theme, scenes, name }: { baseUrl?: string, name: string, theme: string, scenes: Scene[] }) => {
+export const getUrl = ({ baseUrl, theme, scenes, name, music }: { baseUrl?: string, name: string, theme: string, scenes: Scene[], music: Music }) => {
     const encodedScenes = encodeURIComponent(JSON.stringify(scenes));
-    const params = Object.entries({ theme, scenes: encodedScenes }).map(e => e.join('=')).join('&');
+    const encodedMusic = encodeURIComponent(JSON.stringify(music));
+    const params = Object.entries({ theme, scenes: encodedScenes, music: encodedMusic }).map(e => e.join('=')).join('&');
     return `${baseUrl || ""}/${name}?${params}`;
 }
 export const useSetText = () => {

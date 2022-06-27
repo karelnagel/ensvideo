@@ -3,7 +3,7 @@ import { Composition } from "remotion";
 import { Video } from "./Video";
 import "./../index.css";
 import { config } from "../config";
-import { defaultScenes } from "../interfaces/VideoInput";
+import { defaultMusic, defaultScenes } from "../interfaces/VideoInput";
 
 export const Root: React.FC = () => {
   const duration = defaultScenes.reduce((acc, scene) => acc + scene.duration, 0);
@@ -20,6 +20,7 @@ export const Root: React.FC = () => {
           name: "karel.eth",
           theme: config.themes[0],
           scenes: defaultScenes,
+          music: defaultMusic,
         }}
       />
     </>

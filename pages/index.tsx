@@ -3,7 +3,7 @@ import { useAccount, useEnsName, useEnsResolver, useProvider, useSigner } from "
 import { useEffect, useState } from "react";
 import { Player } from "../components/Player";
 import { config, network } from "../config";
-import { availableScenes, defaultScenes, Scene, SceneNames } from "../interfaces/VideoInput";
+import { availableMusic, availableScenes, defaultScenes, Music, Scene, SceneNames } from "../interfaces/VideoInput";
 import { AiFillCloseCircle } from "react-icons/ai";
 import { getUrl, useSetText } from "../functions/url";
 import Link from "next/link";
@@ -18,11 +18,11 @@ function Home() {
   const signer = useSigner();
   const setText = useSetText();
   const [show, setShow] = useState<"name" | "no name" | "no address">("no address");
-
+  const [music, setMusic] = useState<Music>({ id: 0, starting: 0 });
   const saveToChain = async () => {
     console.log("sdfsdfsdfsdfasdf");
     if (!name) return;
-    const hash = await uploadJson({ theme, scenes });
+    const hash = await uploadJson({ theme, scenes, music });
     if (!hash) return;
     console.log(hash);
     await setText(name, hash);
@@ -50,7 +50,7 @@ function Home() {
       </div>
 
       <div className=" bg-gradient-to-tr from-primary to-secondary w-full p-10 h-full">
-      {show === "no address" && (
+        {show === "no address" && (
           <div className="flex flex-col items-center space-y-6">
             <h2 className="text-2xl font-bold">Connect Your Wallet To Get Started</h2>
             <ConnectButton />
@@ -76,6 +76,27 @@ function Home() {
                     </option>
                   ))}
                 </select>
+                <label htmlFor="">Select Music</label>
+                <div className="flex space-x-2">
+                  <select
+                    className="select select-accent w-full max-w-xs text-base-content"
+                    onChange={(e) => setMusic({ id: Number(e.target.value), starting: 0 })}
+                  >
+                    {availableMusic.map((t, i) => (
+                      <option key={i} value={i}>
+                        {t.name}
+                      </option>
+                    ))}
+                  </select>
+                  <input
+                    type="number"
+                    placeholder="Start"
+                    className="input max-w-xs w-20"
+                    value={music.starting === 0 ? "" : music.starting}
+                    onChange={(e) => setMusic((m) => ({ ...m, starting: Number(e.target.value) }))}
+                    disabled={music.id === 0}
+                  />
+                </div>
                 <div>
                   <h3>Scenes</h3>
                   <div className="flex flex-col space-y-2 text-base-content">
@@ -149,13 +170,13 @@ function Home() {
                 <button className="btn btn-secondary" onClick={saveToChain}>
                   Save To Blockchain
                 </button>
-                <Link className="btn btn-secondary" href={getUrl({ theme, scenes, name })}>
-                  Link
+                <Link href={getUrl({ theme, scenes, name: name!, music })}>
+                  <button className="btn btn-secondary">Link</button>
                 </Link>
               </div>
 
               <div className="basis-1/2 rounded-lg overflow-hidden">
-                <Player name={name} theme={theme} scenes={scenes} />
+                <Player name={name!} theme={theme} scenes={scenes} music={music} />
               </div>
             </div>
           </div>

@@ -1,5 +1,6 @@
 import { ConnectButton } from "@rainbow-me/rainbowkit";
 import Link from "next/link";
+import { useRouter } from "next/router";
 
 import { useState } from "react";
 import { MdOutlineDarkMode } from "react-icons/md";
@@ -7,11 +8,11 @@ import { MdOutlineLightMode } from "react-icons/md";
 
 export function Header({ theme, setTheme }: { theme: boolean; setTheme: Function }) {
   const [query, setQuery] = useState("");
+  const router = useRouter();
 
   const handleKeyDown = (event: any) => {
     if (event.key === "Enter") {
-      // navigate(`/${query.replace(".eth", "")}.eth`, { replace: true });
-      // Todo fix
+      router.push(`/${query.replace(".eth", "")}.eth`);
     }
   };
 
@@ -19,7 +20,7 @@ export function Header({ theme, setTheme }: { theme: boolean; setTheme: Function
     <div className="w-full py-4">
       <div className="max-w-screen-xl m-auto grid grid-cols-3 items-center justify-center justify-items-center">
         <Link href="/">
-          <h1 className="font-bold text-3xl text-primary">ENS Video</h1>
+          <h1 className="font-bold text-3xl text-primary cursor-pointer">ENS Video</h1>
         </Link>
         <input
           onKeyDown={handleKeyDown}

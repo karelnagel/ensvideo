@@ -3,13 +3,13 @@ import { useEffect, useState } from "react";
 import { useProvider } from "wagmi";
 import { config, network } from "../config";
 import { useEnsQuery } from "../graphql/generated";
-import { Scene, VideoInput } from "../interfaces/VideoInput";
+import { Music, Scene, VideoInput } from "../interfaces/VideoInput";
 import { Video } from "../remotion/Video";
 
-export function Player({ name, theme, scenes }: { name: string; theme: string; scenes: Scene[] }) {
+export function Player({ name, theme, scenes, music }: { name: string; theme: string; scenes: Scene[]; music: Music }) {
   const { data } = useEnsQuery({ variables: { name } });
   const provider = useProvider({ chainId: network.chain.id });
-  const [videoProps, setVideoProps] = useState<VideoInput>({ name, theme, scenes });
+  const [videoProps, setVideoProps] = useState<VideoInput>({ name, theme, scenes, music });
   const duration = scenes.reduce((acc, scene) => acc + scene.duration, 0);
 
   useEffect(() => {
@@ -52,14 +52,14 @@ export function Player({ name, theme, scenes }: { name: string; theme: string; s
     effect();
   }, [provider, data, name]);
 
-  useEffect(() => setVideoProps((v) => ({ ...v, name, theme, scenes })), [name, theme, scenes]);
+  useEffect(() => setVideoProps((v) => ({ ...v, name, theme, scenes, music })), [name, theme, scenes, music]);
 
   return (
     <div>
       {videoProps.isReady && (
         <RemotionPlayer
           component={Video}
-          durationInFrames={config.remotion.fps * (duration > 0 ? duration : 1)}
+          durationInFrames={config.remotion.fps * (duration > 0 ? Math.round(duration) : 1)}
           compositionWidth={config.remotion.width}
           compositionHeight={config.remotion.height}
           fps={config.remotion.fps}
