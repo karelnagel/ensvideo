@@ -6,7 +6,7 @@ import { useEnsQuery } from "../graphql/generated";
 import { Scene, VideoInput } from "../interfaces/VideoInput";
 import { Video } from "../remotion/Video";
 
-export function Player({ name,  theme, scenes }: { name: string; theme: string; scenes: Scene[] }) {
+export function Player({ name, theme, scenes }: { name: string; theme: string; scenes: Scene[] }) {
   const { data } = useEnsQuery({ variables: { name } });
   const provider = useProvider({ chainId: network.chain.id });
   const [videoProps, setVideoProps] = useState<VideoInput>({ name, theme, scenes });
@@ -14,6 +14,7 @@ export function Player({ name,  theme, scenes }: { name: string; theme: string; 
 
   useEffect(() => {
     const effect = async () => {
+      if (!name) return;
       const resolver = await provider.getResolver(name);
       if (!resolver) return;
 

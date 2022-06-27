@@ -1,6 +1,6 @@
 import { ConnectButton } from "@rainbow-me/rainbowkit";
 import { useAccount, useEnsName, useEnsResolver, useProvider, useSigner } from "wagmi";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Player } from "../components/Player";
 import { config, network } from "../config";
 import { availableScenes, defaultScenes, Scene, SceneNames } from "../interfaces/VideoInput";
@@ -11,14 +11,14 @@ import { uploadJson } from "../functions/ipfs";
 
 function Home() {
   const { data: account } = useAccount();
-  // const name = "karel2.eth";
-  const idk = useEnsResolver()
+  const idk = useEnsResolver();
   const { data: name } = useEnsName({ address: account?.address, chainId: network.chain.id });
   const [theme, setTheme] = useState(config.themes[0]);
   const [scenes, setScenes] = useState<Scene[]>(defaultScenes);
   const signer = useSigner();
   const setText = useSetText();
-  console.log(name);
+  const [show, setShow] = useState<"name" | "no name" | "no address">("no address");
+
   const saveToChain = async () => {
     console.log("sdfsdfsdfsdfasdf");
     if (!name) return;
@@ -28,6 +28,13 @@ function Home() {
     await setText(name, hash);
     console.log("success");
   };
+
+  useEffect(() => {
+    if (!account) setShow("no address");
+    else if (!name) setShow("no name");
+    else setShow("name");
+  }, [account, name]);
+
   return (
     <div className="min-h-full">
       <div className="hero">
@@ -43,16 +50,21 @@ function Home() {
       </div>
 
       <div className=" bg-gradient-to-tr from-primary to-secondary w-full p-10 h-full">
-        {!account && (
+      {show === "no address" && (
           <div className="flex flex-col items-center space-y-6">
             <h2 className="text-2xl font-bold">Connect Your Wallet To Get Started</h2>
             <ConnectButton />
           </div>
         )}
-        {name && (
+        {show === "no name" && (
+          <div className="flex flex-col items-center space-y-6">
+            <h2 className="text-2xl font-bold">You have not set ENS reverse record for this account!</h2>
+          </div>
+        )}
+        {show === "name" && (
           <div className="text-primary-content">
             <h2 className="text-center text-2xl mb-10">
-              Modifying video for: <span className="font-bold">{name}</span>
+              Modifying video for: <b className="font-bold">{name}</b>
             </h2>
             <div className="flex ">
               <div className="basis-1/2 flex flex-col items-start">
@@ -120,18 +132,16 @@ function Home() {
                               }}
                             />
                           ))}
-                        <button>
-                          <AiFillCloseCircle
-                            onClick={() => setScenes((s) => s.filter((_, i) => i !== index))}
-                            className="text-3xl text-secondary bg-white rounded-full"
-                          />
-                        </button>
+                        <AiFillCloseCircle
+                          onClick={() => setScenes((s) => s.filter((_, i) => i !== index))}
+                          className="text-3xl text-secondary bg-white rounded-full"
+                        />
                       </div>
                     ))}
                   </div>
                   <button
                     className="btn btn-secondary"
-                    onClick={() => setScenes((s) => [...s, { name: "Greeting", type: 0, duration: 5, props: [] }])}
+                    onClick={() => setScenes((s) => [...s, { name: "Greeting", type: 0, duration: 3, props: [] }])}
                   >
                     Add scene
                   </button>
