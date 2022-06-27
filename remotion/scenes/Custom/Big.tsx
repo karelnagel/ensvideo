@@ -1,9 +1,9 @@
 import { AbsoluteFill } from "remotion";
-import { SceneInput } from "../../../interfaces/VideoInput";
+import { SceneInput } from "../../../idk/VideoInput";
 import { useText } from "../../hooks/usetText";
 
-export function Big({ props, input }: SceneInput) {
-  const [title] = useText(props, input, ["Your text here"]);
+export function Big({ props, userInfo }: SceneInput) {
+  const [title] = useText(props, userInfo, ["Your text here"]);
   
   return (
     <AbsoluteFill className="flex justify-center items-center">

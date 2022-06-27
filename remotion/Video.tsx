@@ -1,5 +1,7 @@
 import { Series, useVideoConfig, Audio } from "remotion";
-import { availableMusic, availableScenes, VideoInput } from "../interfaces/VideoInput";
+import { availableMusic } from "../idk/music";
+import { availableScenes } from "../idk/scene";
+import { VideoInput } from "../idk/VideoInput";
 
 export const Video = (input: VideoInput) => {
   const { fps } = useVideoConfig();
@@ -11,7 +13,7 @@ export const Video = (input: VideoInput) => {
           if (!Scene) return null;
           return (
             <Series.Sequence key={index} durationInFrames={Math.round(fps * (scene.duration > 0 ? scene.duration : 1))}>
-              <Scene props={scene.props} input={input} />
+              <Scene props={scene.props} userInfo={input.userInfo} />
             </Series.Sequence>
           );
         })}

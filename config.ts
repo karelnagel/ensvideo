@@ -4,7 +4,6 @@ export const config = {
     appName: "ENS Video",
     textKey: "xyz.ensvideo",
     themes: ["cmyk", "dark", "light", "cupcake", "bumblebee", "emerald", "corporate", "synthwave", "retro", "cyberpunk", "valentine", "halloween", "garden", "forest", "aqua", "lofi", "pastel", "fantasy", "wireframe", "black", "luxury", "dracula", "autumn", "business", "acid", "lemonade", "night", "coffee", "winter"],
-    templates: ["default"],
     remotion: {
         fps: 30,
         height: 1080,

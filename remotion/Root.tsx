@@ -3,7 +3,8 @@ import { Composition } from "remotion";
 import { Video } from "./Video";
 import "./../styles/index.css";
 import { config } from "../config";
-import { defaultMusic, defaultScenes } from "../interfaces/VideoInput";
+import { defaultScenes } from "../idk/scene";
+import { defaultMusic } from "../idk/music";
 
 export const Root: React.FC = () => {
   const duration = defaultScenes.reduce((acc, scene) => acc + scene.duration, 0);
@@ -17,7 +18,9 @@ export const Root: React.FC = () => {
         width={config.remotion.width}
         height={config.remotion.height}
         defaultProps={{
-          name: "karel.eth",
+          userInfo: {
+            name: "karel.eth",
+          },
           theme: config.themes[0],
           scenes: defaultScenes,
           music: defaultMusic,

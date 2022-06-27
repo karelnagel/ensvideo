@@ -1,25 +1,25 @@
-import { VideoInput } from "../../interfaces/VideoInput";
+import { UserInfo } from "../../idk/VideoInput";
 
-export function useText(props: string[], input: VideoInput, defaultProps: string[]) {
+export function useText(props: string[], userInfo: UserInfo, defaultProps: string[]) {
     const arrayLength = props.length > defaultProps.length ? props.length : defaultProps.length;
     const returnValue = []
 
-    const birthday = new Date((input.birthday || 0) * 1000);
+    const birthday = new Date((userInfo.birthday || 0) * 1000);
     const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
     for (let i = 0; i < arrayLength; i++) {
         returnValue[i] = (props[i] || defaultProps[i])
-            .replace("{name}", input.name)
-            .replace("{avatar}", input.avatar ?? "")
-            .replace("{description}", input.description ?? "")
-            .replace("{address}", input.address ?? "")
-            .replace("{discord}", input.discord ?? "")
-            .replace("{github}", input.github ?? "")
-            .replace("{email}", input.email ?? "")
-            .replace("{url}", input.url ?? "")
+            .replace("{name}", userInfo.name)
+            .replace("{avatar}", userInfo.avatar ?? "")
+            .replace("{description}", userInfo.description ?? "")
+            .replace("{address}", userInfo.address ?? "")
+            .replace("{discord}", userInfo.discord ?? "")
+            .replace("{github}", userInfo.github ?? "")
+            .replace("{email}", userInfo.email ?? "")
+            .replace("{url}", userInfo.url ?? "")
             .replace("{birthday}", `${monthNames[birthday.getMonth()]} ${birthday.getFullYear()}`)
-            .replace("{subdomains}", input.subdomains?.join(", ") ?? "")
-            .replace("{twitter}", input.twitter ?? "")
+            .replace("{subdomains}", userInfo.subdomains?.join(", ") ?? "")
+            .replace("{twitter}", userInfo.twitter ?? "")
     }
     return returnValue;
 }

@@ -1,9 +1,9 @@
 import { AbsoluteFill, interpolate, spring, useCurrentFrame, useVideoConfig } from "remotion";
-import { SceneInput } from "../../../interfaces/VideoInput";
+import { SceneInput } from "../../../idk/VideoInput";
 import { useText } from "../../hooks/usetText";
 
-export function WithBirthday({ props, input }: SceneInput) {
-  const [title, since] = useText(props, input, ["Hi, I'm {name}", "since {birthday}"]);
+export function WithBirthday({ props, userInfo }: SceneInput) {
+  const [title, since] = useText(props, userInfo, ["Hi, I'm {name}", "since {birthday}"]);
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
 

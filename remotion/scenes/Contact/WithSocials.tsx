@@ -1,15 +1,15 @@
 import { AbsoluteFill } from "remotion";
-import { SceneInput } from "../../../interfaces/VideoInput";
+import { SceneInput } from "../../../idk/VideoInput";
 import { FaTwitter, FaGithub, FaDiscord } from "react-icons/fa";
 import { useText } from "../../hooks/usetText";
 
-export function WithSocials({ props, input }: SceneInput) {
-  const [title] = useText(props, input, ["Contact me"]);
+export function WithSocials({ props, userInfo }: SceneInput) {
+  const [title] = useText(props, userInfo, ["Contact me"]);
 
   const socials = [
-    { icon: FaTwitter, user: input.twitter },
-    { icon: FaGithub, user: input.github },
-    { icon: FaDiscord, user: input.discord },
+    { icon: FaTwitter, user: userInfo.twitter },
+    { icon: FaGithub, user: userInfo.github },
+    { icon: FaDiscord, user: userInfo.discord },
   ];
   return (
     <AbsoluteFill className="flex justify-center items-center space-y-10">

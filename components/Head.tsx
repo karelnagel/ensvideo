@@ -3,7 +3,7 @@ import Head from "next/head";
 export function CustomHead({ nameIn, descriptionIn, imageIn }: { nameIn?: string; descriptionIn?: string; imageIn?: string }) {
   const name = nameIn || "ENS Video";
   const description = descriptionIn || "Personalized ENS videos";
-  const url = process.env.NEXT_PUBLIC_URL ?? "https://ensvideo.vercel.app";
+  const url = process.env.NEXT_PUBLIC_URL || "https://ensvideo.vercel.app";
   const image = imageIn || `${url}/ens.png`;
 
   return (

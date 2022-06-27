@@ -1,11 +1,12 @@
 import { Player } from "../components/Player";
 import { config } from "./../config";
-import { defaultMusic, defaultScenes, Music, Scene } from "../interfaces/VideoInput";
 import { useRouter } from "next/router";
 import { CustomHead } from "../components/Head";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useProvider } from "wagmi";
+import { defaultScenes, Scene } from "../idk/scene";
+import { defaultMusic, Music } from "../idk/music";
 
 function Personal() {
   const router = useRouter();

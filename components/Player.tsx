@@ -3,13 +3,15 @@ import { useEffect, useState } from "react";
 import { useProvider } from "wagmi";
 import { config, network } from "../config";
 import { useEnsQuery } from "../graphql/generated";
-import { Music, Scene, VideoInput } from "../interfaces/VideoInput";
+import { Music } from "../idk/music";
+import { Scene } from "../idk/scene";
+import { VideoInput } from "../idk/VideoInput";
 import { Video } from "../remotion/Video";
 
 export function Player({ name, theme, scenes, music }: { name: string; theme: string; scenes: Scene[]; music: Music }) {
   const { data } = useEnsQuery({ variables: { name } });
   const provider = useProvider({ chainId: network.chain.id });
-  const [videoProps, setVideoProps] = useState<VideoInput>({ name, theme, scenes, music });
+  const [videoProps, setVideoProps] = useState<VideoInput>({ userInfo: { name }, theme, scenes, music });
   const duration = scenes.reduce((acc, scene) => acc + scene.duration, 0);
 
   useEffect(() => {
@@ -36,23 +38,26 @@ export function Player({ name, theme, scenes, music }: { name: string; theme: st
 
       setVideoProps((v) => ({
         ...v,
-        avatar: avatar?.url,
-        email,
-        url,
-        description,
-        twitter,
-        github,
-        discord,
+        userInfo: {
+          name,
+          avatar: avatar?.url,
+          email,
+          url,
+          description,
+          twitter,
+          github,
+          discord,
+          address,
+          birthday,
+          subdomains,
+        },
         isReady: true,
-        address,
-        birthday,
-        subdomains,
       }));
     };
     effect();
   }, [provider, data, name]);
 
-  useEffect(() => setVideoProps((v) => ({ ...v, name, theme, scenes, music })), [name, theme, scenes, music]);
+  useEffect(() => setVideoProps((v) => ({ ...v, userInfo: { name }, theme, scenes, music })), [name, theme, scenes, music]);
 
   return (
     <div>

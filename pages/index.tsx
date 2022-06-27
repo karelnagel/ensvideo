@@ -3,22 +3,24 @@ import { useAccount, useEnsName, useEnsResolver, useProvider, useSigner } from "
 import { useEffect, useState } from "react";
 import { Player } from "../components/Player";
 import { config, network } from "../config";
-import { availableMusic, availableScenes, defaultScenes, Music, Scene, SceneNames } from "../interfaces/VideoInput";
 import { AiFillCloseCircle } from "react-icons/ai";
-import { getUrl, useSetText } from "../functions/url";
+import { getUrl } from "../functions/getUrl";
 import Link from "next/link";
-import { uploadJson } from "../functions/ipfs";
+import { uploadJson } from "../functions/uploadJson";
+import { useResolver } from "../hooks/useResolver";
+import { availableScenes, defaultScenes, Scene, SceneNames } from "../idk/scene";
+import { availableMusic, defaultMusic, Music } from "../idk/music";
 
 function Home() {
   const { data: account } = useAccount();
-  const idk = useEnsResolver();
   const { data: name } = useEnsName({ address: account?.address, chainId: network.chain.id });
+  const setText = useResolver();
+  
+  const [show, setShow] = useState<"name" | "no name" | "no address">("no address");
   const [theme, setTheme] = useState(config.themes[0]);
   const [scenes, setScenes] = useState<Scene[]>(defaultScenes);
-  const signer = useSigner();
-  const setText = useSetText();
-  const [show, setShow] = useState<"name" | "no name" | "no address">("no address");
-  const [music, setMusic] = useState<Music>({ id: 0, starting: 0 });
+  const [music, setMusic] = useState<Music>(defaultMusic);
+
   const saveToChain = async () => {
     console.log("sdfsdfsdfsdfasdf");
     if (!name) return;
@@ -168,7 +170,7 @@ function Home() {
                   </button>
                 </div>
                 <button className="btn btn-secondary" onClick={saveToChain}>
-                  Save To Blockchain
+                  Save to chain
                 </button>
                 <Link href={getUrl({ theme, scenes, name: name!, music })}>
                   <button className="btn btn-secondary">Link</button>

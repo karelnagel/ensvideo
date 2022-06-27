@@ -1,9 +1,9 @@
 import { AbsoluteFill, interpolate, spring, useCurrentFrame, useVideoConfig } from "remotion";
-import { SceneInput } from "../../../interfaces/VideoInput";
+import { SceneInput } from "../../../idk/VideoInput";
 import { useText } from "../../hooks/usetText";
 
-export function Waving({ props, input }: SceneInput) {
-  const [title] = useText(props,input,["Hi, I'm {name}"])
+export function Waving({ props, userInfo }: SceneInput) {
+  const [title] = useText(props,userInfo,["Hi, I'm {name}"])
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
 
