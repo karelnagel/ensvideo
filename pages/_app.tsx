@@ -35,19 +35,20 @@ export const client = new ApolloClient({
 });
 
 function MyApp({ Component, pageProps }: AppProps) {
-  const [dark, setDark] = useState(false);
-  // const [dark, setDark] = useState(localStorage.getItem("theme") === "night");
+  const [dark, setDark] = useState<boolean | undefined>(undefined);
 
   useEffect(() => {
-    // localStorage.setItem("theme", dark ? "night" : "cmyk");
+    if (dark === undefined) setDark(localStorage.getItem("theme") === "dark");
+    else localStorage.setItem("theme", dark ? "dark" : "cmyk");
   }, [dark]);
+
 
   return (
     <ApolloProvider client={client}>
       <WagmiConfig client={wagmiClient}>
         <RainbowKitProvider chains={chains}>
           <CustomHead />
-          <div className="font-workSans min-h-screen bg-base-200 flex flex-col" data-theme={dark ? "night" : "cmyk"}>
+          <div className="font-workSans min-h-screen bg-base-200 flex flex-col" data-theme={dark ? "dark" : "cmyk"}>
             <Header theme={dark} setTheme={setDark} />
             <Component {...pageProps} />
             <Footer />

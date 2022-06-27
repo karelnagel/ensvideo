@@ -1,9 +1,9 @@
 import { AbsoluteFill, Img } from "remotion";
 import { SceneInput } from "../../../interfaces/VideoInput";
+import { useText } from "../../hooks/usetText";
 
 export function BigAndImage({ props, input }: SceneInput) {
-  const big = props[0] || "Your text here";
-  const image = props[1] || "/ens.svg";
+  const [big, image] = useText(props, input, ["Your text here", "/ens.svg"]);
 
   return (
     <AbsoluteFill className="flex justify-center items-center space-y-10">

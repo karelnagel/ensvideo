@@ -6,7 +6,7 @@ import { useState } from "react";
 import { MdOutlineDarkMode } from "react-icons/md";
 import { MdOutlineLightMode } from "react-icons/md";
 
-export function Header({ theme, setTheme }: { theme: boolean; setTheme: Function }) {
+export function Header({ theme, setTheme }: { theme?: boolean; setTheme: Function }) {
   const [query, setQuery] = useState("");
   const router = useRouter();
 

@@ -1,8 +1,10 @@
 import { AbsoluteFill, Img, spring, useCurrentFrame, useVideoConfig } from "remotion";
 import { SceneInput } from "../../../interfaces/VideoInput";
+import { useText } from "../../hooks/usetText";
 
 export function WithAvatar({ props, input }: SceneInput) {
-  const title = props[0] || "Hi, I'm";
+  const [title] = useText(props, input, ["Hi, I'm {name}"]);
+
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
 
@@ -15,7 +17,7 @@ export function WithAvatar({ props, input }: SceneInput) {
         <Img src={input.avatar} className="mask mask-squircle  h-full w-full" />
       </div>
       <h1 style={{ transform: `translateX(${spring2}%)` }} className="text-9xl text-primary">
-        {title} {input.name}
+        {title}
       </h1>
     </AbsoluteFill>
   );

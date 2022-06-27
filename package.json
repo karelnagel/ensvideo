@@ -7,8 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "remotion:start": "npx remotion preview remotion/index.ts",
-    "remotion:build": "npx remotion render remotion/index.ts Video out.mp4",
+    "remotion:start": "REMOTION_LOCAL=true npx remotion preview remotion/index.ts",
+    "remotion:build": "REMOTION_LOCAL=true npx remotion render remotion/index.ts Video out.mp4",
     "generate": "graphql-codegen"
   },
   "dependencies": {
@@ -29,6 +29,8 @@
     "ipfs-http-client": "^57.0.3",
     "next": "12.1.6",
     "postcss": "^8.4.14",
+    "postcss-loader": "^7.0.0",
+    "postcss-preset-env": "^7.7.2",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-icons": "^4.4.0",

@@ -3,16 +3,12 @@ import { chain } from "@wagmi/core";
 export const config = {
     appName: "ENS Video",
     textKey: "xyz.ensvideo",
-    themes: ["cmyk", "night", "cupcake", "bumblebee", "emerald", "halloween", "forest", "pastel"],
+    themes: ["cmyk", "dark", "light", "cupcake", "bumblebee", "emerald", "corporate", "synthwave", "retro", "cyberpunk", "valentine", "halloween", "garden", "forest", "aqua", "lofi", "pastel", "fantasy", "wireframe", "black", "luxury", "dracula", "autumn", "business", "acid", "lemonade", "night", "coffee", "winter"],
     templates: ["default"],
     remotion: {
         fps: 30,
         height: 1080,
         width: 1920,
-        scenes: [
-            { name: "hi", duration: 3 },
-            { name: "socials", duration: 5 },
-        ]
     },
     networks: [
         {

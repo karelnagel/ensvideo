@@ -1,8 +1,9 @@
 import { AbsoluteFill, interpolate, spring, useCurrentFrame, useVideoConfig } from "remotion";
 import { SceneInput } from "../../../interfaces/VideoInput";
+import { useText } from "../../hooks/usetText";
 
 export function Waving({ props, input }: SceneInput) {
-  const title = props[0] || "Hi, I'm";
+  const [title] = useText(props,input,["Hi, I'm {name}"])
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
 
@@ -12,7 +13,7 @@ export function Waving({ props, input }: SceneInput) {
   return (
     <AbsoluteFill className="flex justify-center items-center">
       <h1 style={{ transform: `translateX(${spring2}%)` }} className="text-primary text-9xl">
-        {title} {input.name}
+        {title}
         <span style={{ transform: `rotate(${Math.sin(wave / 6)}turn)`, display: "inline-block" }}>👋</span>
       </h1>
     </AbsoluteFill>

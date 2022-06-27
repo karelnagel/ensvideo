@@ -1,8 +1,10 @@
 import { AbsoluteFill, interpolate, spring, useCurrentFrame, useVideoConfig } from "remotion";
 import { SceneInput } from "../../../interfaces/VideoInput";
+import { useText } from "../../hooks/usetText";
 
 export function WithDescription({ props, input }: SceneInput) {
-  const title = props[0] || "Hi, I'm";
+  const [title, description] = useText(props, input, ["Hi, I'm {name}", "{description}"]);
+
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
 
@@ -12,10 +14,10 @@ export function WithDescription({ props, input }: SceneInput) {
   return (
     <AbsoluteFill className="flex justify-center items-center">
       <h1 style={{ transform: `translateX(${spring2}%)` }} className="text-9xl text-primary">
-        {title} {input.name}
+        {title}
       </h1>
       <h3 style={{ opacity }} className="">
-        {input.description}
+        {description}
       </h3>
     </AbsoluteFill>
   );

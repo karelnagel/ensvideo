@@ -1,9 +1,10 @@
 import { AbsoluteFill } from "remotion";
 import { SceneInput } from "../../../interfaces/VideoInput";
 import { FaTwitter, FaGithub, FaDiscord } from "react-icons/fa";
+import { useText } from "../../hooks/usetText";
 
 export function WithEmailSocials({ props, input }: SceneInput) {
-  const title = props[0] || "Contact me";
+  const [title] = useText(props, input, ["Contact me"]);
   const socials = [
     { icon: FaTwitter, user: input.twitter },
     { icon: FaGithub, user: input.github },

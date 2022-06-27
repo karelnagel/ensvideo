@@ -1,7 +1,7 @@
 import React from "react";
 import { Composition } from "remotion";
 import { Video } from "./Video";
-import "./../index.css";
+import "./../styles/index.css";
 import { config } from "../config";
 import { defaultMusic, defaultScenes } from "../interfaces/VideoInput";
 
