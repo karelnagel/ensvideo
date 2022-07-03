@@ -9,17 +9,17 @@ export function useText(props: string[], userInfo: UserInfo, defaultProps: strin
 
     for (let i = 0; i < arrayLength; i++) {
         returnValue[i] = (props[i] || defaultProps[i])
-            .replace("{name}", userInfo.name)
-            .replace("{avatar}", userInfo.avatar ?? "")
-            .replace("{description}", userInfo.description ?? "")
-            .replace("{address}", userInfo.address ?? "")
-            .replace("{discord}", userInfo.discord ?? "")
-            .replace("{github}", userInfo.github ?? "")
-            .replace("{email}", userInfo.email ?? "")
-            .replace("{url}", userInfo.url ?? "")
+            .replace("{name}", userInfo.name || "")
+            .replace("{avatar}", userInfo.avatar || "")
+            .replace("{description}", userInfo.description || "")
+            .replace("{address}", userInfo.address || "")
+            .replace("{discord}", userInfo.discord || "")
+            .replace("{github}", userInfo.github || "")
+            .replace("{email}", userInfo.email || "")
+            .replace("{url}", userInfo.url || "")
             .replace("{birthday}", `${monthNames[birthday.getMonth()]} ${birthday.getFullYear()}`)
-            .replace("{subdomains}", userInfo.subdomains?.join(", ") ?? "")
-            .replace("{twitter}", userInfo.twitter ?? "")
+            .replace("{subdomains}", userInfo.subdomains?.join(", ") || "")
+            .replace("{twitter}", userInfo.twitter || "")
     }
     return returnValue;
 }

@@ -13,7 +13,7 @@ export const Video = (input: VideoInput) => {
           if (!Scene) return null;
           return (
             <Series.Sequence key={index} durationInFrames={Math.round(fps * (scene.duration > 0 ? scene.duration : 1))}>
-              <Scene props={scene.props} userInfo={input.userInfo} />
+              <Scene props={scene.props} userInfo={input.userInfo!} />
             </Series.Sequence>
           );
         })}

@@ -2,6 +2,7 @@ import { Music } from "./music"
 import { Scene } from "./scene"
 
 export interface UserInfo {
+    name?:string,
     NFTs?: NFT[],
     birthday?: number,
     balance?: string,
@@ -15,14 +16,13 @@ export interface UserInfo {
     twitter?: string,
     github?: string,
     discord?: string,
-    name: string,
 }
 export interface VideoInput {
-    userInfo: UserInfo
+    name:string
+    userInfo?: UserInfo
     scenes: Scene[]
     theme: string
     music: Music
-    isReady?: boolean
 }
 export interface NFT {
     name: string,

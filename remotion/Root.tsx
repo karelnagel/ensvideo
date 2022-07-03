@@ -18,9 +18,7 @@ export const Root: React.FC = () => {
         width={config.remotion.width}
         height={config.remotion.height}
         defaultProps={{
-          userInfo: {
-            name: "karel.eth",
-          },
+          name:"karel.eth",
           theme: config.themes[0],
           scenes: defaultScenes,
           music: defaultMusic,

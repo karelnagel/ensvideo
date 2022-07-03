@@ -1,25 +1,31 @@
 import { ConnectButton } from "@rainbow-me/rainbowkit";
-import { useAccount, useEnsName, useEnsResolver, useProvider, useSigner } from "wagmi";
+import { useAccount, useEnsName } from "wagmi";
 import { useEffect, useState } from "react";
 import { Player } from "../components/Player";
-import { config, network } from "../config";
+import { config } from "../config";
 import { AiFillCloseCircle } from "react-icons/ai";
 import { getUrl } from "../functions/getUrl";
 import Link from "next/link";
 import { uploadJson } from "../functions/uploadJson";
 import { useResolver } from "../hooks/useResolver";
-import { availableScenes, defaultScenes, Scene, SceneNames } from "../idk/scene";
-import { availableMusic, defaultMusic, Music } from "../idk/music";
+import { availableScenes, Scene, SceneNames } from "../idk/scene";
+import { availableMusic, Music } from "../idk/music";
+import { useProps } from "../hooks/useProps";
 
 function Home() {
   const { data: account } = useAccount();
-  const { data: name } = useEnsName({ address: account?.address, chainId: network.chain.id });
+  const { data: name } = useEnsName({ address: account?.address });
+  const props = useProps(name?.toString());
   const setText = useResolver();
-  
+
   const [show, setShow] = useState<"name" | "no name" | "no address">("no address");
-  const [theme, setTheme] = useState(config.themes[0]);
-  const [scenes, setScenes] = useState<Scene[]>(defaultScenes);
-  const [music, setMusic] = useState<Music>(defaultMusic);
+  const [theme, setTheme] = useState(props.theme);
+  const [scenes, setScenes] = useState<Scene[]>(props.scenes);
+  const [music, setMusic] = useState<Music>(props.music);
+
+  useEffect(() => setTheme(props.theme), [props.theme]);
+  useEffect(() => setMusic(props.music), [props.music]);
+  useEffect(() => setScenes(props.scenes), [props.scenes]);
 
   const saveToChain = async () => {
     console.log("sdfsdfsdfsdfasdf");
@@ -71,7 +77,7 @@ function Home() {
             <div className="flex ">
               <div className="basis-1/2 flex flex-col items-start">
                 <label htmlFor="">Select Theme</label>
-                <select className="select select-accent w-full max-w-xs text-base-content" onChange={(e) => setTheme(e.target.value)}>
+                <select className="select select-accent w-full max-w-xs text-base-content" value={theme} onChange={(e) => setTheme(e.target.value)}>
                   {config.themes.map((t) => (
                     <option key={t} value={t}>
                       {t}
@@ -81,6 +87,7 @@ function Home() {
                 <label htmlFor="">Select Music</label>
                 <div className="flex space-x-2">
                   <select
+                    value={music.id}
                     className="select select-accent w-full max-w-xs text-base-content"
                     onChange={(e) => setMusic({ id: Number(e.target.value), starting: 0 })}
                   >
