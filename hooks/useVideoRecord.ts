@@ -14,9 +14,6 @@ export function useVideoRecord(name: string) {
 
     useEffect(() => {
         async function effect() {
-            if (!name) return
-            if (!loading) return
-            
             const resolver = await provider.getResolver(name.toString());
             if (!resolver) return;
 
@@ -29,8 +26,8 @@ export function useVideoRecord(name: string) {
             setTheme(result.data.theme)
             setLoading(false)
         }
-        effect()
-    }, [loading, name, provider])
+        if (loading && name) effect()
+    }, [loading, provider, name])
 
     return loading ? null : { scenes, music, theme }
 }

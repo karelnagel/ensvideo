@@ -33,7 +33,6 @@ export function Player({ name, theme, scenes, music }: { name: string; theme: st
           }}
           clickToPlay
           controls
-          autoPlay
           loop
         />
       )}

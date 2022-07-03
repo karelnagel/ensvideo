@@ -3,9 +3,18 @@ import { CustomHead } from "../components/Head";
 import { useProps } from "../hooks/useProps";
 import Link from "next/link";
 import { getUrl } from "../functions/getUrl";
+import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
 
 function Personal() {
-  const { scenes, theme, music, name } = useProps();
+  const router = useRouter();
+  const [name, setName] = useState("");
+
+  useEffect(() => {
+    if (!name && router.query.name) setName(router.query.name?.toString());
+  }, [router.query.name, name]);
+
+  const { scenes, theme, music } = useProps(name);
 
   return (
     <div className="">

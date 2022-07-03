@@ -15,7 +15,7 @@ import { useProps } from "../hooks/useProps";
 function Home() {
   const { data: account } = useAccount();
   const { data: name } = useEnsName({ address: account?.address });
-  const props = useProps(name?.toString());
+  const props = useProps(name?.toString() || "");
   const setText = useResolver();
 
   const [show, setShow] = useState<"name" | "no name" | "no address">("no address");
