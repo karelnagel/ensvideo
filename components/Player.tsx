@@ -20,7 +20,7 @@ export function Player({ name, theme, scenes, music }: { name: string; theme: st
 
   return (
     <div>
-      {videoProps.userInfo && (
+      {videoProps.userInfo ? (
         <RemotionPlayer
           component={Video}
           durationInFrames={config.remotion.fps * (duration > 0 ? Math.round(duration) : 1)}
@@ -34,9 +34,11 @@ export function Player({ name, theme, scenes, music }: { name: string; theme: st
           clickToPlay
           controls
           loop
+          numberOfSharedAudioTags={0}
         />
+      ) : (
+        <div>Loading...</div>
       )}
-      {!videoProps.userInfo && <div>Loading...</div>}
     </div>
   );
 }
