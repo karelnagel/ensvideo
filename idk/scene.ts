@@ -18,33 +18,38 @@ export const defaultScenes: Scene[] = [
     { name: "Greeting", type: 2, duration: 3, props: [] },
     { name: "Contact", type: 0, duration: 3, props: [] }]
 
+const greeting = "Hi, I'm {name}"
+const contactMe = "Contact me"
+const nftTitle = "My NFTs"
+const bigText = "Your big text here"
+const smallText = "Your small text here"
 export const availableScenes = [
     {
         name: "Greeting", types: [
-            { props: ["greeting"], description: "With avatar", element: WithAvatar },
-            { props: ["greeting"], description: "With description", element: WithDescription },
-            { props: ["greeting"], description: "With birthday", element: WithBirthday },
-            { props: ["greeting"], description: "Waving", element: Waving },
+            { props: [greeting], description: "With avatar", element: WithAvatar },
+            { props: [greeting, "{description}"], description: "With description", element: WithDescription },
+            { props: [greeting, "since {birthday}"], description: "With birthday", element: WithBirthday },
+            { props: [greeting], description: "Waving", element: Waving },
         ]
     },
     {
         name: "Contact", types: [
-            { props: ["title"], description: "with email and socials", element: WithEmailSocials },
-            { props: ["title"], description: "with email", element: WithEmail },
-            { props: ["title"], description: "with socials", element: WithSocials },
+            { props: [contactMe], description: "With email and socials", element: WithEmailSocials },
+            { props: [contactMe], description: "With email", element: WithEmail },
+            { props: [contactMe], description: "With socials", element: WithSocials },
         ]
     },
     {
         name: "NFTs", types: [
-            { props: ["title"], description: "grid", element: WithAvatar },
-            { props: ["title"], description: "gallery", element: WithAvatar },
+            { props: [nftTitle], description: "grid", element: WithAvatar },
+            { props: [nftTitle], description: "gallery", element: WithAvatar },
         ]
     },
     {
         name: "Custom", types: [
-            { props: ["big",], description: "Big", element: Big },
-            { props: ["big", "small"], description: "Big and small", element: BigAndSmall },
-            { props: ["big", "imageUrl"], description: "Image and big", element: BigAndImage },
+            { props: [bigText], description: "Big text", element: Big },
+            { props: [bigText, smallText], description: "Big and small text", element: BigAndSmall },
+            { props: [bigText, "/ens.svg"], description: "Image and big text", element: BigAndImage },
         ]
     }
 ]

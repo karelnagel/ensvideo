@@ -32,8 +32,8 @@ export function Header({ theme, setTheme }: { theme?: boolean; setTheme: Functio
         <div className="flex space-x-3">
           <label className="swap swap-rotate">
             <input type="checkbox" onChange={() => setTheme((t: any) => !t)} />
-            <MdOutlineDarkMode className={`swap-on fill-current w-6 h-6`} />
-            <MdOutlineLightMode className={`swap-off fill-current w-6 h-6`} />
+            <MdOutlineDarkMode className={`swap-off fill-current w-6 h-6`} />
+            <MdOutlineLightMode className={`swap-on fill-current w-6 h-6`} />
           </label>
           <ConnectButton />
         </div>

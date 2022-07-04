@@ -55,7 +55,7 @@ function Home() {
           <Link href={"/vitalik.eth"}>
             <button className="btn btn-primary">Watch Demo</button>
           </Link>
-          <p>Total users: {allUsers?.domains.length ?? "0"}</p>
+          <p>Total users: {allUsers?.domains.length ?? ""}</p>
         </div>
       </div>
 

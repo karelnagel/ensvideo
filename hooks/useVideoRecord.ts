@@ -10,10 +10,12 @@ export function useVideoRecord(name: string) {
     const [scenes, setScenes] = useState<Scene[]>();
     const [music, setMusic] = useState<Music>()
     const [theme, setTheme] = useState<string>()
-    const [loading, setLoading] = useState(true)
 
     useEffect(() => {
         async function effect() {
+            setScenes(undefined);
+            setMusic(undefined)
+            setTheme(undefined)
             const resolver = await provider.getResolver(name.toString());
             if (!resolver) return;
 
@@ -24,10 +26,9 @@ export function useVideoRecord(name: string) {
             setScenes(result.data.scenes);
             setMusic(result.data.music)
             setTheme(result.data.theme)
-            setLoading(false)
         }
-        if (loading && name) effect()
-    }, [loading, provider, name])
+        effect()
+    }, [provider, name])
 
-    return loading ? null : { scenes, music, theme }
+    return { scenes, music, theme }
 }

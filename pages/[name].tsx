@@ -11,8 +11,8 @@ function Personal() {
   const [name, setName] = useState("");
 
   useEffect(() => {
-    if (!name && router.query.name) setName(router.query.name?.toString());
-  }, [router.query.name, name]);
+    if (router.query.name) setName(router.query.name?.toString());
+  }, [router.query.name]);
 
   const { scenes, theme, music } = useProps(name);
 
