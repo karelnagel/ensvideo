@@ -1,0 +1,5 @@
+query GetAllUsers($textKey: [String!] = ["xyz.ensvideo"]) {
+  domains(where: {resolver_: {texts_contains: $textKey}}) {
+    name
+  }
+}

@@ -11,6 +11,7 @@ import { useResolver } from "../hooks/useResolver";
 import { availableScenes, Scene, SceneNames } from "../idk/scene";
 import { availableMusic, Music } from "../idk/music";
 import { useProps } from "../hooks/useProps";
+import { useGetAllUsersQuery } from "../graphql/generated";
 
 function Home() {
   const { data: account } = useAccount();
@@ -22,7 +23,7 @@ function Home() {
   const [theme, setTheme] = useState(props.theme);
   const [scenes, setScenes] = useState<Scene[]>(props.scenes);
   const [music, setMusic] = useState<Music>(props.music);
-
+  const { data: allUsers } = useGetAllUsersQuery({ variables: { textKey: [config.textKey] } });
   useEffect(() => setTheme(props.theme), [props.theme]);
   useEffect(() => setMusic(props.music), [props.music]);
   useEffect(() => setScenes(props.scenes), [props.scenes]);
@@ -54,6 +55,7 @@ function Home() {
           <Link href={"/vitalik.eth"}>
             <button className="btn btn-primary">Watch Demo</button>
           </Link>
+          <p>Total users: {allUsers?.domains.length ?? "0"}</p>
         </div>
       </div>
 

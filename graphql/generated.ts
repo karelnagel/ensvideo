@@ -55,6 +55,7 @@ export type AbiChanged_Filter = {
   id_not?: InputMaybe<Scalars['ID']>;
   id_not_in?: InputMaybe<Array<Scalars['ID']>>;
   resolver?: InputMaybe<Scalars['String']>;
+  resolver_?: InputMaybe<Resolver_Filter>;
   resolver_contains?: InputMaybe<Scalars['String']>;
   resolver_contains_nocase?: InputMaybe<Scalars['String']>;
   resolver_ends_with?: InputMaybe<Scalars['String']>;
@@ -118,6 +119,7 @@ export type AccountRegistrationsArgs = {
 export type Account_Filter = {
   /** Filter for the block changed event. */
   _change_block?: InputMaybe<BlockChangedFilter>;
+  domains_?: InputMaybe<Domain_Filter>;
   id?: InputMaybe<Scalars['ID']>;
   id_gt?: InputMaybe<Scalars['ID']>;
   id_gte?: InputMaybe<Scalars['ID']>;
@@ -126,6 +128,7 @@ export type Account_Filter = {
   id_lte?: InputMaybe<Scalars['ID']>;
   id_not?: InputMaybe<Scalars['ID']>;
   id_not_in?: InputMaybe<Array<Scalars['ID']>>;
+  registrations_?: InputMaybe<Registration_Filter>;
 };
 
 export enum Account_OrderBy {
@@ -147,6 +150,7 @@ export type AddrChanged_Filter = {
   /** Filter for the block changed event. */
   _change_block?: InputMaybe<BlockChangedFilter>;
   addr?: InputMaybe<Scalars['String']>;
+  addr_?: InputMaybe<Account_Filter>;
   addr_contains?: InputMaybe<Scalars['String']>;
   addr_contains_nocase?: InputMaybe<Scalars['String']>;
   addr_ends_with?: InputMaybe<Scalars['String']>;
@@ -183,6 +187,7 @@ export type AddrChanged_Filter = {
   id_not?: InputMaybe<Scalars['ID']>;
   id_not_in?: InputMaybe<Array<Scalars['ID']>>;
   resolver?: InputMaybe<Scalars['String']>;
+  resolver_?: InputMaybe<Resolver_Filter>;
   resolver_contains?: InputMaybe<Scalars['String']>;
   resolver_contains_nocase?: InputMaybe<Scalars['String']>;
   resolver_ends_with?: InputMaybe<Scalars['String']>;
@@ -259,6 +264,7 @@ export type AuthorisationChanged_Filter = {
   owner_not_contains?: InputMaybe<Scalars['Bytes']>;
   owner_not_in?: InputMaybe<Array<Scalars['Bytes']>>;
   resolver?: InputMaybe<Scalars['String']>;
+  resolver_?: InputMaybe<Resolver_Filter>;
   resolver_contains?: InputMaybe<Scalars['String']>;
   resolver_contains_nocase?: InputMaybe<Scalars['String']>;
   resolver_ends_with?: InputMaybe<Scalars['String']>;
@@ -347,6 +353,7 @@ export type ContenthashChanged_Filter = {
   id_not?: InputMaybe<Scalars['ID']>;
   id_not_in?: InputMaybe<Array<Scalars['ID']>>;
   resolver?: InputMaybe<Scalars['String']>;
+  resolver_?: InputMaybe<Resolver_Filter>;
   resolver_contains?: InputMaybe<Scalars['String']>;
   resolver_contains_nocase?: InputMaybe<Scalars['String']>;
   resolver_ends_with?: InputMaybe<Scalars['String']>;
@@ -436,6 +443,7 @@ export type DomainEvent_Filter = {
   blockNumber_not?: InputMaybe<Scalars['Int']>;
   blockNumber_not_in?: InputMaybe<Array<Scalars['Int']>>;
   domain?: InputMaybe<Scalars['String']>;
+  domain_?: InputMaybe<Domain_Filter>;
   domain_contains?: InputMaybe<Scalars['String']>;
   domain_contains_nocase?: InputMaybe<Scalars['String']>;
   domain_ends_with?: InputMaybe<Scalars['String']>;
@@ -548,6 +556,7 @@ export type Domain_Filter = {
   name_starts_with?: InputMaybe<Scalars['String']>;
   name_starts_with_nocase?: InputMaybe<Scalars['String']>;
   owner?: InputMaybe<Scalars['String']>;
+  owner_?: InputMaybe<Account_Filter>;
   owner_contains?: InputMaybe<Scalars['String']>;
   owner_contains_nocase?: InputMaybe<Scalars['String']>;
   owner_ends_with?: InputMaybe<Scalars['String']>;
@@ -568,6 +577,7 @@ export type Domain_Filter = {
   owner_starts_with?: InputMaybe<Scalars['String']>;
   owner_starts_with_nocase?: InputMaybe<Scalars['String']>;
   parent?: InputMaybe<Scalars['String']>;
+  parent_?: InputMaybe<Domain_Filter>;
   parent_contains?: InputMaybe<Scalars['String']>;
   parent_contains_nocase?: InputMaybe<Scalars['String']>;
   parent_ends_with?: InputMaybe<Scalars['String']>;
@@ -588,6 +598,7 @@ export type Domain_Filter = {
   parent_starts_with?: InputMaybe<Scalars['String']>;
   parent_starts_with_nocase?: InputMaybe<Scalars['String']>;
   resolvedAddress?: InputMaybe<Scalars['String']>;
+  resolvedAddress_?: InputMaybe<Account_Filter>;
   resolvedAddress_contains?: InputMaybe<Scalars['String']>;
   resolvedAddress_contains_nocase?: InputMaybe<Scalars['String']>;
   resolvedAddress_ends_with?: InputMaybe<Scalars['String']>;
@@ -608,6 +619,7 @@ export type Domain_Filter = {
   resolvedAddress_starts_with?: InputMaybe<Scalars['String']>;
   resolvedAddress_starts_with_nocase?: InputMaybe<Scalars['String']>;
   resolver?: InputMaybe<Scalars['String']>;
+  resolver_?: InputMaybe<Resolver_Filter>;
   resolver_contains?: InputMaybe<Scalars['String']>;
   resolver_contains_nocase?: InputMaybe<Scalars['String']>;
   resolver_ends_with?: InputMaybe<Scalars['String']>;
@@ -627,6 +639,7 @@ export type Domain_Filter = {
   resolver_not_starts_with_nocase?: InputMaybe<Scalars['String']>;
   resolver_starts_with?: InputMaybe<Scalars['String']>;
   resolver_starts_with_nocase?: InputMaybe<Scalars['String']>;
+  subdomains_?: InputMaybe<Domain_Filter>;
   ttl?: InputMaybe<Scalars['BigInt']>;
   ttl_gt?: InputMaybe<Scalars['BigInt']>;
   ttl_gte?: InputMaybe<Scalars['BigInt']>;
@@ -695,6 +708,7 @@ export type InterfaceChanged_Filter = {
   interfaceID_not_contains?: InputMaybe<Scalars['Bytes']>;
   interfaceID_not_in?: InputMaybe<Array<Scalars['Bytes']>>;
   resolver?: InputMaybe<Scalars['String']>;
+  resolver_?: InputMaybe<Resolver_Filter>;
   resolver_contains?: InputMaybe<Scalars['String']>;
   resolver_contains_nocase?: InputMaybe<Scalars['String']>;
   resolver_ends_with?: InputMaybe<Scalars['String']>;
@@ -775,6 +789,7 @@ export type MulticoinAddrChanged_Filter = {
   id_not?: InputMaybe<Scalars['ID']>;
   id_not_in?: InputMaybe<Array<Scalars['ID']>>;
   resolver?: InputMaybe<Scalars['String']>;
+  resolver_?: InputMaybe<Resolver_Filter>;
   resolver_contains?: InputMaybe<Scalars['String']>;
   resolver_contains_nocase?: InputMaybe<Scalars['String']>;
   resolver_ends_with?: InputMaybe<Scalars['String']>;
@@ -860,6 +875,7 @@ export type NameChanged_Filter = {
   name_starts_with?: InputMaybe<Scalars['String']>;
   name_starts_with_nocase?: InputMaybe<Scalars['String']>;
   resolver?: InputMaybe<Scalars['String']>;
+  resolver_?: InputMaybe<Resolver_Filter>;
   resolver_contains?: InputMaybe<Scalars['String']>;
   resolver_contains_nocase?: InputMaybe<Scalars['String']>;
   resolver_ends_with?: InputMaybe<Scalars['String']>;
@@ -933,6 +949,7 @@ export type NameRegistered_Filter = {
   id_not?: InputMaybe<Scalars['ID']>;
   id_not_in?: InputMaybe<Array<Scalars['ID']>>;
   registrant?: InputMaybe<Scalars['String']>;
+  registrant_?: InputMaybe<Account_Filter>;
   registrant_contains?: InputMaybe<Scalars['String']>;
   registrant_contains_nocase?: InputMaybe<Scalars['String']>;
   registrant_ends_with?: InputMaybe<Scalars['String']>;
@@ -953,6 +970,7 @@ export type NameRegistered_Filter = {
   registrant_starts_with?: InputMaybe<Scalars['String']>;
   registrant_starts_with_nocase?: InputMaybe<Scalars['String']>;
   registration?: InputMaybe<Scalars['String']>;
+  registration_?: InputMaybe<Registration_Filter>;
   registration_contains?: InputMaybe<Scalars['String']>;
   registration_contains_nocase?: InputMaybe<Scalars['String']>;
   registration_ends_with?: InputMaybe<Scalars['String']>;
@@ -1026,6 +1044,7 @@ export type NameRenewed_Filter = {
   id_not?: InputMaybe<Scalars['ID']>;
   id_not_in?: InputMaybe<Array<Scalars['ID']>>;
   registration?: InputMaybe<Scalars['String']>;
+  registration_?: InputMaybe<Registration_Filter>;
   registration_contains?: InputMaybe<Scalars['String']>;
   registration_contains_nocase?: InputMaybe<Scalars['String']>;
   registration_ends_with?: InputMaybe<Scalars['String']>;
@@ -1090,6 +1109,7 @@ export type NameTransferred_Filter = {
   id_not?: InputMaybe<Scalars['ID']>;
   id_not_in?: InputMaybe<Array<Scalars['ID']>>;
   newOwner?: InputMaybe<Scalars['String']>;
+  newOwner_?: InputMaybe<Account_Filter>;
   newOwner_contains?: InputMaybe<Scalars['String']>;
   newOwner_contains_nocase?: InputMaybe<Scalars['String']>;
   newOwner_ends_with?: InputMaybe<Scalars['String']>;
@@ -1110,6 +1130,7 @@ export type NameTransferred_Filter = {
   newOwner_starts_with?: InputMaybe<Scalars['String']>;
   newOwner_starts_with_nocase?: InputMaybe<Scalars['String']>;
   registration?: InputMaybe<Scalars['String']>;
+  registration_?: InputMaybe<Registration_Filter>;
   registration_contains?: InputMaybe<Scalars['String']>;
   registration_contains_nocase?: InputMaybe<Scalars['String']>;
   registration_ends_with?: InputMaybe<Scalars['String']>;
@@ -1167,6 +1188,7 @@ export type NewOwner_Filter = {
   blockNumber_not?: InputMaybe<Scalars['Int']>;
   blockNumber_not_in?: InputMaybe<Array<Scalars['Int']>>;
   domain?: InputMaybe<Scalars['String']>;
+  domain_?: InputMaybe<Domain_Filter>;
   domain_contains?: InputMaybe<Scalars['String']>;
   domain_contains_nocase?: InputMaybe<Scalars['String']>;
   domain_ends_with?: InputMaybe<Scalars['String']>;
@@ -1195,6 +1217,7 @@ export type NewOwner_Filter = {
   id_not?: InputMaybe<Scalars['ID']>;
   id_not_in?: InputMaybe<Array<Scalars['ID']>>;
   owner?: InputMaybe<Scalars['String']>;
+  owner_?: InputMaybe<Account_Filter>;
   owner_contains?: InputMaybe<Scalars['String']>;
   owner_contains_nocase?: InputMaybe<Scalars['String']>;
   owner_ends_with?: InputMaybe<Scalars['String']>;
@@ -1215,6 +1238,7 @@ export type NewOwner_Filter = {
   owner_starts_with?: InputMaybe<Scalars['String']>;
   owner_starts_with_nocase?: InputMaybe<Scalars['String']>;
   parentDomain?: InputMaybe<Scalars['String']>;
+  parentDomain_?: InputMaybe<Domain_Filter>;
   parentDomain_contains?: InputMaybe<Scalars['String']>;
   parentDomain_contains_nocase?: InputMaybe<Scalars['String']>;
   parentDomain_ends_with?: InputMaybe<Scalars['String']>;
@@ -1272,6 +1296,7 @@ export type NewResolver_Filter = {
   blockNumber_not?: InputMaybe<Scalars['Int']>;
   blockNumber_not_in?: InputMaybe<Array<Scalars['Int']>>;
   domain?: InputMaybe<Scalars['String']>;
+  domain_?: InputMaybe<Domain_Filter>;
   domain_contains?: InputMaybe<Scalars['String']>;
   domain_contains_nocase?: InputMaybe<Scalars['String']>;
   domain_ends_with?: InputMaybe<Scalars['String']>;
@@ -1300,6 +1325,7 @@ export type NewResolver_Filter = {
   id_not?: InputMaybe<Scalars['ID']>;
   id_not_in?: InputMaybe<Array<Scalars['ID']>>;
   resolver?: InputMaybe<Scalars['String']>;
+  resolver_?: InputMaybe<Resolver_Filter>;
   resolver_contains?: InputMaybe<Scalars['String']>;
   resolver_contains_nocase?: InputMaybe<Scalars['String']>;
   resolver_ends_with?: InputMaybe<Scalars['String']>;
@@ -1356,6 +1382,7 @@ export type NewTtl_Filter = {
   blockNumber_not?: InputMaybe<Scalars['Int']>;
   blockNumber_not_in?: InputMaybe<Array<Scalars['Int']>>;
   domain?: InputMaybe<Scalars['String']>;
+  domain_?: InputMaybe<Domain_Filter>;
   domain_contains?: InputMaybe<Scalars['String']>;
   domain_contains_nocase?: InputMaybe<Scalars['String']>;
   domain_ends_with?: InputMaybe<Scalars['String']>;
@@ -1443,6 +1470,7 @@ export type PubkeyChanged_Filter = {
   id_not?: InputMaybe<Scalars['ID']>;
   id_not_in?: InputMaybe<Array<Scalars['ID']>>;
   resolver?: InputMaybe<Scalars['String']>;
+  resolver_?: InputMaybe<Resolver_Filter>;
   resolver_contains?: InputMaybe<Scalars['String']>;
   resolver_contains_nocase?: InputMaybe<Scalars['String']>;
   resolver_ends_with?: InputMaybe<Scalars['String']>;
@@ -2010,6 +2038,7 @@ export type RegistrationEvent_Filter = {
   id_not?: InputMaybe<Scalars['ID']>;
   id_not_in?: InputMaybe<Array<Scalars['ID']>>;
   registration?: InputMaybe<Scalars['String']>;
+  registration_?: InputMaybe<Registration_Filter>;
   registration_contains?: InputMaybe<Scalars['String']>;
   registration_contains_nocase?: InputMaybe<Scalars['String']>;
   registration_ends_with?: InputMaybe<Scalars['String']>;
@@ -2056,6 +2085,7 @@ export type Registration_Filter = {
   cost_not?: InputMaybe<Scalars['BigInt']>;
   cost_not_in?: InputMaybe<Array<Scalars['BigInt']>>;
   domain?: InputMaybe<Scalars['String']>;
+  domain_?: InputMaybe<Domain_Filter>;
   domain_contains?: InputMaybe<Scalars['String']>;
   domain_contains_nocase?: InputMaybe<Scalars['String']>;
   domain_ends_with?: InputMaybe<Scalars['String']>;
@@ -2112,6 +2142,7 @@ export type Registration_Filter = {
   labelName_starts_with?: InputMaybe<Scalars['String']>;
   labelName_starts_with_nocase?: InputMaybe<Scalars['String']>;
   registrant?: InputMaybe<Scalars['String']>;
+  registrant_?: InputMaybe<Account_Filter>;
   registrant_contains?: InputMaybe<Scalars['String']>;
   registrant_contains_nocase?: InputMaybe<Scalars['String']>;
   registrant_ends_with?: InputMaybe<Scalars['String']>;
@@ -2200,6 +2231,7 @@ export type ResolverEvent_Filter = {
   id_not?: InputMaybe<Scalars['ID']>;
   id_not_in?: InputMaybe<Array<Scalars['ID']>>;
   resolver?: InputMaybe<Scalars['String']>;
+  resolver_?: InputMaybe<Resolver_Filter>;
   resolver_contains?: InputMaybe<Scalars['String']>;
   resolver_contains_nocase?: InputMaybe<Scalars['String']>;
   resolver_ends_with?: InputMaybe<Scalars['String']>;
@@ -2238,6 +2270,7 @@ export type Resolver_Filter = {
   /** Filter for the block changed event. */
   _change_block?: InputMaybe<BlockChangedFilter>;
   addr?: InputMaybe<Scalars['String']>;
+  addr_?: InputMaybe<Account_Filter>;
   addr_contains?: InputMaybe<Scalars['String']>;
   addr_contains_nocase?: InputMaybe<Scalars['String']>;
   addr_ends_with?: InputMaybe<Scalars['String']>;
@@ -2276,6 +2309,7 @@ export type Resolver_Filter = {
   contentHash_not_contains?: InputMaybe<Scalars['Bytes']>;
   contentHash_not_in?: InputMaybe<Array<Scalars['Bytes']>>;
   domain?: InputMaybe<Scalars['String']>;
+  domain_?: InputMaybe<Domain_Filter>;
   domain_contains?: InputMaybe<Scalars['String']>;
   domain_contains_nocase?: InputMaybe<Scalars['String']>;
   domain_ends_with?: InputMaybe<Scalars['String']>;
@@ -2842,6 +2876,7 @@ export type TextChanged_Filter = {
   key_starts_with?: InputMaybe<Scalars['String']>;
   key_starts_with_nocase?: InputMaybe<Scalars['String']>;
   resolver?: InputMaybe<Scalars['String']>;
+  resolver_?: InputMaybe<Resolver_Filter>;
   resolver_contains?: InputMaybe<Scalars['String']>;
   resolver_contains_nocase?: InputMaybe<Scalars['String']>;
   resolver_ends_with?: InputMaybe<Scalars['String']>;
@@ -2898,6 +2933,7 @@ export type Transfer_Filter = {
   blockNumber_not?: InputMaybe<Scalars['Int']>;
   blockNumber_not_in?: InputMaybe<Array<Scalars['Int']>>;
   domain?: InputMaybe<Scalars['String']>;
+  domain_?: InputMaybe<Domain_Filter>;
   domain_contains?: InputMaybe<Scalars['String']>;
   domain_contains_nocase?: InputMaybe<Scalars['String']>;
   domain_ends_with?: InputMaybe<Scalars['String']>;
@@ -2926,6 +2962,7 @@ export type Transfer_Filter = {
   id_not?: InputMaybe<Scalars['ID']>;
   id_not_in?: InputMaybe<Array<Scalars['ID']>>;
   owner?: InputMaybe<Scalars['String']>;
+  owner_?: InputMaybe<Account_Filter>;
   owner_contains?: InputMaybe<Scalars['String']>;
   owner_contains_nocase?: InputMaybe<Scalars['String']>;
   owner_ends_with?: InputMaybe<Scalars['String']>;
@@ -3000,6 +3037,13 @@ export type EnsQueryVariables = Exact<{
 
 export type EnsQuery = { __typename?: 'Query', domains: Array<{ __typename?: 'Domain', id: string, name?: string | null, createdAt: any, resolver?: { __typename?: 'Resolver', texts?: Array<string> | null, contentHash?: any | null } | null, owner: { __typename?: 'Account', id: string }, subdomains: Array<{ __typename?: 'Domain', name?: string | null }>, resolvedAddress?: { __typename?: 'Account', id: string } | null }> };
 
+export type GetAllUsersQueryVariables = Exact<{
+  textKey?: InputMaybe<Array<Scalars['String']> | Scalars['String']>;
+}>;
+
+
+export type GetAllUsersQuery = { __typename?: 'Query', domains: Array<{ __typename?: 'Domain', name?: string | null }> };
+
 
 export const EnsDocument = gql`
     query ens($name: String = "") {
@@ -3051,3 +3095,38 @@ export function useEnsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<EnsQue
 export type EnsQueryHookResult = ReturnType<typeof useEnsQuery>;
 export type EnsLazyQueryHookResult = ReturnType<typeof useEnsLazyQuery>;
 export type EnsQueryResult = Apollo.QueryResult<EnsQuery, EnsQueryVariables>;
+export const GetAllUsersDocument = gql`
+    query GetAllUsers($textKey: [String!] = ["xyz.ensvideo"]) {
+  domains(where: {resolver_: {texts_contains: $textKey}}) {
+    name
+  }
+}
+    `;
+
+/**
+ * __useGetAllUsersQuery__
+ *
+ * To run a query within a React component, call `useGetAllUsersQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetAllUsersQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetAllUsersQuery({
+ *   variables: {
+ *      textKey: // value for 'textKey'
+ *   },
+ * });
+ */
+export function useGetAllUsersQuery(baseOptions?: Apollo.QueryHookOptions<GetAllUsersQuery, GetAllUsersQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<GetAllUsersQuery, GetAllUsersQueryVariables>(GetAllUsersDocument, options);
+      }
+export function useGetAllUsersLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetAllUsersQuery, GetAllUsersQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<GetAllUsersQuery, GetAllUsersQueryVariables>(GetAllUsersDocument, options);
+        }
+export type GetAllUsersQueryHookResult = ReturnType<typeof useGetAllUsersQuery>;
+export type GetAllUsersLazyQueryHookResult = ReturnType<typeof useGetAllUsersLazyQuery>;
+export type GetAllUsersQueryResult = Apollo.QueryResult<GetAllUsersQuery, GetAllUsersQueryVariables>;
