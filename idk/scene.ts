@@ -15,7 +15,7 @@ export interface Scene { name: SceneNames, type: number, props: string[], durati
 
 export const defaultScenes: Scene[] = [
     { name: "Greeting", type: 0, duration: 3, props: [] },
-    { name: "Greeting", type: 2, duration: 3, props: [] },
+    { name: "Custom", type: 0, duration: 3, props: [] },
     { name: "Contact", type: 0, duration: 3, props: [] }]
 
 const greeting = "Hi, I'm {name}"
@@ -47,7 +47,7 @@ export const availableScenes = [
     },
     {
         name: "Custom", types: [
-            { props: [bigText], description: "Big text", element: Big },
+            { props: ["First registred in {birthday}"], description: "Big text", element: Big },
             { props: [bigText, smallText], description: "Big and small text", element: BigAndSmall },
             { props: [bigText, "/ens.svg"], description: "Image and big text", element: BigAndImage },
         ]

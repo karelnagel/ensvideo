@@ -52,7 +52,7 @@ function Home() {
           <h3 className="text-2xl font-bold max-w-screen-sm text-center">
             Create your own personal ENS greeting video in just seconds, all data on chain!
           </h3>
-          <Link href={"/vitalik.eth"}>
+          <Link href={"/nick.eth"}>
             <button className="btn btn-primary">Watch Demo</button>
           </Link>
           <p>Total users: {allUsers?.domains.length ?? ""}</p>

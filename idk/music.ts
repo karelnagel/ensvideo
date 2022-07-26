@@ -3,7 +3,7 @@ export interface Music {
     starting: number
 }
 
-export const defaultMusic: Music = { id: 0, starting: 0 }
+export const defaultMusic: Music = { id: 1, starting: 0 }
 
 export const availableMusic = [
     { name: "No music", file: null },
